@@ -83,5 +83,23 @@ public class Pilota {
 
     }
 
+    public void setDirection(String direction) {
+        switch (direction) {
+            case "RIGHT":
+                dirX = 1;
+                break;
+            case "LEFT":
+                dirX = -1;
+                break;
+            case "DOWN":
+                dirY = 1;
+                break;
+            case "UP":
+                dirY = -1;
+                break;
+        }
+    }
+
+
 
 }

@@ -13,6 +13,7 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.util.Duration;
 import sprites.Pilota;
@@ -84,6 +85,15 @@ public class MainWindow implements Initializable {
                 Point2D point = new Point2D(mouseEvent.getX(),mouseEvent.getY());
                 if(pilota.isClicked(point)) pilota.changeDir();
                 System.out.println("click");
+            }
+        });
+
+        scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent keyEvent) {
+                System.out.println(keyEvent.getCode().toString());
+                pilota.setDirection(keyEvent.getCode().toString());
+
             }
         });
     }
