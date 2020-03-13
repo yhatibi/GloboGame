@@ -33,4 +33,5 @@ Si teniu cap dubte sobre el funcionament d'alguna de les parts,
 estaria molt bé que obríssiu un issue al github i així el dubte i la resposta serà oberta a tothom.  
 Sinó també ja sabeu el meu correu electrònic.
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/Xjk9oiGIPlI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+[![Branques github](https://youtu.be/Xjk9oiGIPlI/0.jpg)](https://youtu.be/Xjk9oiGIPlI "Navegar per les bramques del github")
+
