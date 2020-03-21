@@ -53,7 +53,6 @@ public class MainApp extends Application {
             case 3: Space space = loader.getController();
                     space.setScene(sc);
                     break;
-            default: fxml = "fxml/mainWindow.fxml";
         }
 
         stage.setScene(sc);

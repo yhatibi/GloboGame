@@ -5,19 +5,21 @@ import javafx.geometry.Rectangle2D;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
-public class Ship {
+public class Ship extends Sprite {
     private Image image;
-    private double posX, posY, velX, velY, width, height;
+    private double velX, velY;
     private int dirX, dirY;
 
     public Ship(Image image) {
-        this.posX = Math.random()*600;
-        this.posY = Math.random()*400;
+        super(image);
+        setX(Math.random()*600);
+        setY(50);
+
         this.velX = 1.0f;
-        this.velY = 1.0f;
+        this.velY = 5.0f;
         this.dirX = 1;
         this.dirY = 1;
-        setImage(image);
+        //setImage(image);
     }
 
     /**
@@ -25,33 +27,32 @@ public class Ship {
      * En aquest exemple només cal generalitzar les mides per on es
      * pot moure. En aquest cas en una finestra de 600x400
      */
+    @Override
     public void move() {
         if(dirX == 1) {
-            posX += velX;
-            if(posX>=600-width) dirX = (-1)*dirX;
+            setX(getPosX() + velX);
+            if(getPosX()>=600-getWidth()) {
+                dirX = (-1)*dirX;
+                setY(getPosY() + velY);
+            }
         }else {
-            posX -= velX;
-            if(posX<=0) dirX = (-1)*dirX;
-        }
-        if(dirY == 1){
-            posY += velY;
-            if(posY>=400-height) dirY = (-1)*dirY;
-        }
-        else {
-            posY -= velY;
-            if(posY<=0) dirY = (-1)*dirY;
+            setX(getPosX() - velX);
+            if(getPosX() <= 0) dirX = (-1)*dirX;
         }
     }
 
-    public void render(GraphicsContext gc) {
+
+   /* public void render(GraphicsContext gc) {
         gc.drawImage(image, posX, posY);
     }
+    */
 
-    public void setImage(Image i) {
+
+    /* public void setImage(Image i) {
         image = i;
         width = image.getWidth();
         height = image.getHeight();
-    }
+    }*/
 
     /**
      * Netejar la zona que ocupa l'objecte dins del graphicsContext
@@ -60,14 +61,14 @@ public class Ship {
      * @param gc
      */
     public void clear(GraphicsContext gc) {
-        gc.clearRect(posX,posY, width, height);
+        gc.clearRect(getPosX(),getPosY(), getWidth(), getHeight());
     }
 
-    public Rectangle2D getBoundary() {
+   /* public Rectangle2D getBoundary() {
         return new Rectangle2D(posX,posY,width,height);
-    }
+    }*/
 
-    public boolean isClicked(Point2D p) {
+    /*public boolean isClicked(Point2D p) {
         if(getBoundary().contains(p)) return true;
         else return false;
     }
@@ -99,6 +100,8 @@ public class Ship {
                 break;
         }
     }
+
+     */
 
 
 }
