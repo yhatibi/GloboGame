@@ -29,9 +29,18 @@ Exemple simple amb un sprite Pilota que volta per un canvas. Observeu que el dis
 >Aquesta tècnica d'intercanvi d'imatges (inclosos tot en una mateixa) no és la única forma de fer-la. Podríem també tenir per separat, cada un del moviments  
 >que pot tenir el personatge.
 
+>**spaceship**  
+>En aquesta branca tenim una nau que es mou a banda i banda de la finestra
+>quan toca a la part dreta baixa una mica i segueix fins a l'altra banda.
+>El que heu de veure en aquesta branca és que s'ha afegir una **classe abstracta**
+>per tal que cada vegada que necessitem un sprite fem que aquest nou
+>hereti d'aquesta abstract i només haguem de definir quin és el seu moviment
+
+
 Si teniu cap dubte sobre el funcionament d'alguna de les parts,
 estaria molt bé que obríssiu un issue al github i així el dubte i la resposta serà oberta a tothom.  
 Sinó també ja sabeu el meu correu electrònic.
 
-[![Branques github](https://youtu.be/Xjk9oiGIPlI/0.jpg)](https://youtu.be/Xjk9oiGIPlI "Navegar per les bramques del github")
+[![Branques github](https://youtu.be/Xjk9oiGIPlI/0.jpg)](https://youtu.be/Xjk9oiGIPlI "Navegar per les bramques del github")  
+
 
