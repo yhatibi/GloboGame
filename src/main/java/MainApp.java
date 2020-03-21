@@ -1,4 +1,5 @@
 import control.MainWindow;
+import control.Space;
 import control.Walking;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -22,13 +23,15 @@ public class MainApp extends Application {
     public void start(Stage stage) {
         System.out.println("1. Pilota");
         System.out.println("2. Walking");
+        System.out.println("3. SpaceShip");
+
         int op = sc.nextInt();
         FXMLLoader loader;
-        if(op==1) {
-            fxml = "fxml/mainWindow.fxml";
-
-        } else {
-            fxml = "fxml/walking.fxml";
+        switch (op) {
+            case 1: fxml = "fxml/mainWindow.fxml"; break;
+            case 2: fxml = "fxml/walking.fxml"; break;
+            case 3: fxml = "fxml/space.fxml"; break;
+            default: fxml = "fxml/mainWindow.fxml";
         }
         loader = new FXMLLoader(getClass().getClassLoader().getResource(fxml));
         loader.setResources(ResourceBundle.getBundle("bundles.mybundle", new Locale("ca")));
@@ -40,17 +43,21 @@ public class MainApp extends Application {
         }
         Scene sc = new Scene(root);
 
-        if(op==1){
-            MainWindow window = loader.getController();
-            window.setScene(sc);
-        }else {
-            Walking walking = loader.getController();
-            walking.setScene(sc);
+        switch (op) {
+            case 1: MainWindow window = loader.getController();
+                    window.setScene(sc);
+                    break;
+            case 2: Walking walking = loader.getController();
+                    walking.setScene(sc);
+                    break;
+            case 3: Space space = loader.getController();
+                    space.setScene(sc);
+                    break;
+            default: fxml = "fxml/mainWindow.fxml";
         }
 
-
         stage.setScene(sc);
-        stage.setTitle("Rebota");
+        stage.setTitle("Exemple " + op);
         stage.show();
 
     }
