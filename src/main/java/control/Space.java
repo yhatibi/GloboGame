@@ -10,7 +10,9 @@ import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
+import javafx.scene.input.KeyEvent;
 import javafx.util.Duration;
+import sprites.Nau;
 import sprites.Ship;
 
 import java.net.URL;
@@ -20,6 +22,7 @@ public class Space implements Initializable {
     private Scene scene;
     private GraphicsContext gc;
     private Ship ship;
+    private Nau nau;
 
     @FXML
     Canvas mainCanvas;
@@ -38,7 +41,9 @@ public class Space implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         ship = new Ship(new Image("images/invaders2.png"));
+        nau = new Nau(new Image("images/nau.png"));
         gc = mainCanvas.getGraphicsContext2D();
+        nau.render(gc);
 
         timeline.setCycleCount(Timeline.INDEFINITE);
         timeline.play();
@@ -47,5 +52,15 @@ public class Space implements Initializable {
 
     public void setScene(Scene sc) {
         scene = sc;
+        scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent keyEvent) {
+                nau.clear(gc);
+                nau.move(keyEvent.getCode().toString());
+                nau.render(gc);
+                //audioClip.play();
+
+            }
+        });
     }
 }

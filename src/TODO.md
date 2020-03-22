@@ -30,11 +30,12 @@ Exemple simple amb un sprite Pilota que volta per un canvas. Observeu que el dis
 >que pot tenir el personatge.
 
 >**spaceship**  
->En aquesta branca tenim una nau que es mou a banda i banda de la finestra
+>En aquesta branca tenim una nau que es mou a banda i banda de la finestra,
 >quan toca a la part dreta baixa una mica i segueix fins a l'altra banda.
->El que heu de veure en aquesta branca és que s'ha afegir una **classe abstracta**
+>El que heu de veure en aquesta branca és que s'ha afegit una **classe abstracta**
 >per tal que cada vegada que necessitem un sprite fem que aquest nou
->hereti d'aquesta abstract i només haguem de definir quin és el seu moviment
+>hereti d'aquesta abstract class i només haguem de definir quin és el seu moviment,
+> i d'altres funcionalitats que hi vulguem afegir.
 
 
 Si teniu cap dubte sobre el funcionament d'alguna de les parts,
