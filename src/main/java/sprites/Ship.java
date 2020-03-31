@@ -9,7 +9,7 @@ public class Ship extends Sprite {
     public Ship(Image image) {
         super(image);
         setX(Math.random()*600);
-        setY(50);
+        setY(150);
         this.velX = 1.0f;
         this.velY = 5.0f;
         this.dirX = 1;

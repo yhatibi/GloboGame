@@ -27,11 +27,14 @@ public class Space implements Initializable {
     @FXML
     Canvas mainCanvas;
 
-    Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.0057), new EventHandler<ActionEvent>(){
+    Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.0017), new EventHandler<ActionEvent>(){
         @Override
         public void handle(ActionEvent event) {
             ship.clear(gc);
             ship.move();
+            if(ship.getBoundary().intersects(nau.getBoundary())) {
+                ship.setY(150);
+            }
             ship.render(gc);
 
         }
@@ -58,7 +61,6 @@ public class Space implements Initializable {
                 nau.clear(gc);
                 nau.move(keyEvent.getCode().toString());
                 nau.render(gc);
-                //audioClip.play();
 
             }
         });
