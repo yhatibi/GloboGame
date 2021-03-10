@@ -7,11 +7,14 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Point2D;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.util.Duration;
 import sprites.Pilota;
 
@@ -41,7 +44,7 @@ public class MainWindow implements Initializable {
      * Controlem la velocitat de refresc amb KeyFrame.
      * Aquesta opció és molt més flexible que l'AnimationTimer
      */
-    Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.0017), new EventHandler<ActionEvent>(){
+    Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.0057), new EventHandler<ActionEvent>(){
         @Override
         public void handle(ActionEvent event) {
             pilota.clear(gc);
@@ -76,5 +79,22 @@ public class MainWindow implements Initializable {
 
     public void setScene(Scene sc) {
         scene = sc;
+        scene.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                Point2D point = new Point2D(mouseEvent.getX(),mouseEvent.getY());
+                if(pilota.isClicked(point)) pilota.changeDir();
+                System.out.println("click");
+            }
+        });
+
+        scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent keyEvent) {
+                System.out.println(keyEvent.getCode().toString());
+                pilota.setDirection(keyEvent.getCode().toString());
+
+            }
+        });
     }
 }

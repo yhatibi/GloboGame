@@ -1,5 +1,7 @@
 package sprites;
 
+import javafx.geometry.Point2D;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
@@ -61,6 +63,42 @@ public class Pilota {
         gc.clearRect(posX,posY, width, height);
     }
 
+    public Rectangle2D getBoundary() {
+        return new Rectangle2D(posX,posY,width,height);
+    }
+
+    public boolean isClicked(Point2D p) {
+        if(getBoundary().contains(p)) return true;
+        else return false;
+    }
+
+    public void changeDir() {
+        double t = Math.random();
+        if(0.33 > t) dirX = dirX*(-1);
+        if(0.33 < t && 0.66 > t) dirY = dirY*(-1);
+        if(0.66 < t) {
+            dirY = dirY*(-1);
+            dirX = dirX*(-1);
+        }
+
+    }
+
+    public void setDirection(String direction) {
+        switch (direction) {
+            case "RIGHT":
+                dirX = 1;
+                break;
+            case "LEFT":
+                dirX = -1;
+                break;
+            case "DOWN":
+                dirY = 1;
+                break;
+            case "UP":
+                dirY = -1;
+                break;
+        }
+    }
 
 
 
