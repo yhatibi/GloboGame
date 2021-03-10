@@ -1,9 +1,6 @@
 ### Examples JavaFX Games
 
->Every example is splited in differents **branches**</br>
->**Ball**: extends1, extends2</br>
->**Girl**: extends3</br>
->**Spaceship**: spaceship</br>
+>Exemples que tries al iniciar-se el menu
 
 
 ![Pilota](src/main/captures/ball.gif)
