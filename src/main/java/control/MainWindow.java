@@ -25,7 +25,7 @@ public class MainWindow implements Initializable {
     private Scene scene;
     private GraphicsContext gc;
     private Pilota pilota;
-    Image fons;
+    private Image fons;
 
     /**
      * Opció 1: Animationtimer
@@ -49,8 +49,9 @@ public class MainWindow implements Initializable {
         @Override
         public void handle(ActionEvent event) {
 
-            gc.drawImage(fons, 600,400);
+
             pilota.clear(gc);
+            gc.drawImage(fons, 0,0,600,400);
             pilota.move();
             pilota.render(gc);
 
@@ -68,10 +69,10 @@ public class MainWindow implements Initializable {
         System.out.println(url);
         System.out.println(resourceBundle.getString("key2"));
 
-        pilota = new Pilota(new Image("images/ball.png"));
+        pilota = new Pilota(new Image("images/pilota.png"));
         fons = new Image("images/pista.jpeg");
         gc = mainCanvas.getGraphicsContext2D();
-        gc.drawImage(fons, 600,400);
+        //gc.drawImage(fons, 600,400);
 
         // Opció 1
         //animationTimer.start();
