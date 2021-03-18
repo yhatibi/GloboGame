@@ -16,7 +16,7 @@ import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.util.Duration;
-import sprites.Pilota;
+import sprites.Globo;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -24,7 +24,7 @@ import java.util.ResourceBundle;
 public class MainWindow implements Initializable {
     private Scene scene;
     private GraphicsContext gc;
-    private Pilota pilota;
+    private Globo globo;
     private Image fons;
 
     /**
@@ -34,9 +34,9 @@ public class MainWindow implements Initializable {
     private AnimationTimer animationTimer = new AnimationTimer() {
         @Override
         public void handle(long l) {
-            pilota.clear(gc);
-            pilota.move();
-            pilota.render(gc);
+            globo.clear(gc);
+            globo.move();
+            globo.render(gc);
         }
     };
 
@@ -50,10 +50,12 @@ public class MainWindow implements Initializable {
         public void handle(ActionEvent event) {
 
 
-            pilota.clear(gc);
+            globo.clear(gc);
             gc.drawImage(fons, 0,0,600,400);
-            pilota.move();
-            pilota.render(gc);
+            globo.move();
+            globo.render(gc);
+
+
 
         }
     })
@@ -69,7 +71,8 @@ public class MainWindow implements Initializable {
         System.out.println(url);
         System.out.println(resourceBundle.getString("key2"));
 
-        pilota = new Pilota(new Image("images/pilota.png"));
+        globo = new Globo(new Image("images/pilota.png"));
+        globo = new Globo(new Image("images/pilota.png"));
         fons = new Image("images/pista.jpeg");
         gc = mainCanvas.getGraphicsContext2D();
         //gc.drawImage(fons, 600,400);
@@ -89,7 +92,7 @@ public class MainWindow implements Initializable {
             @Override
             public void handle(MouseEvent mouseEvent) {
                 Point2D point = new Point2D(mouseEvent.getX(),mouseEvent.getY());
-                if(pilota.isClicked(point)) pilota.changeDir();
+                if(globo.isClicked(point)) globo.changeDir();
                 System.out.println("click");
             }
         });
@@ -98,7 +101,7 @@ public class MainWindow implements Initializable {
             @Override
             public void handle(KeyEvent keyEvent) {
                 System.out.println(keyEvent.getCode().toString());
-                pilota.setDirection(keyEvent.getCode().toString());
+                globo.setDirection(keyEvent.getCode().toString());
 
             }
         });

@@ -5,12 +5,12 @@ import javafx.geometry.Rectangle2D;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
-public class Pilota {
+public class Globo {
     private Image image;
     private double posX, posY, velX, velY, width, height;
     private int dirX, dirY;
 
-    public Pilota(Image image) {
+    public Globo(Image image) {
         this.posX = Math.random()*600;
         this.posY = Math.random()*400;
         this.velX = 1.0f;
