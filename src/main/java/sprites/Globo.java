@@ -27,9 +27,7 @@ public class Globo {
      * pot moure. En aquest cas en una finestra de 1200x800
      */
     public void move() {
-        System.out.println("Se ejecut¿?");
         this.posY--;
-        System.out.println(posY);
         /*if(dirX == 1) {
             posX += velX;
             if(posX>=1200-width) dirX = (-1)*dirX;

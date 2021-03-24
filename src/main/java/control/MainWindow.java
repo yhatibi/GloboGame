@@ -28,8 +28,8 @@ public class MainWindow implements Initializable {
     private Globo globo = new Globo(new Image("images/globo.png", 100, 100, false, false));
     private Globo globo1 = new Globo(new Image("images/globo.png", 100, 100, false, false));
     private Image fons;
-    SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd 'at' HH:mm:ss z");
-    int contadorGlobos;
+    double cuantos = 0.006;
+
     ArrayList<Globo> globos = new ArrayList<>();
 
     /**
@@ -51,38 +51,24 @@ public class MainWindow implements Initializable {
      * Aquesta opció és molt més flexible que l'AnimationTimer
      */
     /*Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.0057), new EventHandler<>() {*/
-    Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.05), new EventHandler<>() {
+    Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.005), new EventHandler<>() {
         @Override
         public void handle(ActionEvent event) {
 
 
-            if (Math.random() < 0.2)  {
+            if (Math.random() < cuantos)  {
 
                 Globo globo = new Globo(new Image("images/globo.png", 100, 100, false, false));
                 globos.add(globo);
             }
 
             gc.drawImage(fons, 0,0,1200,800);;
-            Date date = new Date(System.currentTimeMillis());
-            System.out.println(formatter.format(date));
             for (int i = 0; i < globos.size(); i++) {
-
                 globos.get(i).move();
                 globos.get(i).render(gc);
             }
 
-            /*globo.move();
-            globo.render(gc);
-
-            globo1.move();
-            globo1.render(gc);*/
-
-
-
-
-
-
-
+            gc.fillText("fdfd", 660, 600);
 
         }
     })
@@ -115,9 +101,16 @@ public class MainWindow implements Initializable {
         scene = sc;
         scene.setOnMouseClicked(mouseEvent -> {
             Point2D point = new Point2D(mouseEvent.getX(),mouseEvent.getY());
-            if(globo.isClicked(point)) globo.changeDir();
-            System.out.println("click");
+            globos.removeIf(globo -> {
+                for (int i = 0; i < globos.size(); i++) {
+                    globos.get(i).clear(gc);
+                }
+                return false;
+            });
+            System.out.println("Clicado");
         });
+
+
 
         scene.setOnKeyPressed(keyEvent -> {
             System.out.println(keyEvent.getCode().toString());
