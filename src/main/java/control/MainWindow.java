@@ -102,12 +102,11 @@ public class MainWindow implements Initializable {
         scene.setOnMouseClicked(mouseEvent -> {
             Point2D point = new Point2D(mouseEvent.getX(),mouseEvent.getY());
             globos.removeIf(globo -> {
-                for (int i = 0; i < globos.size(); i++) {
-                    globos.get(i).clear(gc);
-                }
+
+                if(globo.isClicked(point)) globo.clear(gc);
+
                 return false;
             });
-            System.out.println("Clicado");
         });
 
 

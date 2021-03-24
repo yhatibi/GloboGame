@@ -49,6 +49,13 @@ public class Globo {
         gc.drawImage(image, posX, posY);
     }
 
+    public double getPosX() {
+        return posX;
+    }
+
+    public double getPosY() {
+        return posY;
+    }
     public void setImage(Image i) {
         image = i;
         width = image.getWidth();
