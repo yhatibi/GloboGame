@@ -24,6 +24,7 @@ public class MainApp extends Application {
         fxml = "fxml/mainWindow.fxml";
 
         loader = new FXMLLoader(getClass().getClassLoader().getResource(fxml));
+        stage.setResizable(false);
         loader.setResources(ResourceBundle.getBundle("bundles.mybundle", new Locale("ca")));
         Parent root = null;
         try {

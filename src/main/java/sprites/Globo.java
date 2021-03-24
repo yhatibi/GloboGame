@@ -6,13 +6,14 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
 public class Globo {
+
     private Image image;
     private double posX, posY, velX, velY, width, height;
     private int dirX, dirY;
 
     public Globo(Image image) {
-        this.posX = Math.random()*600;
-        this.posY = Math.random()*400;
+        this.posX = Math.random()*1200;
+        this.posY = 750;
         this.velX = 1.0f;
         this.velY = 1.0f;
         this.dirX = 1;
@@ -23,24 +24,27 @@ public class Globo {
     /**
      * El moviment de la pilota és gestionat per la mateixa pilota
      * En aquest exemple només cal generalitzar les mides per on es
-     * pot moure. En aquest cas en una finestra de 600x400
+     * pot moure. En aquest cas en una finestra de 1200x800
      */
     public void move() {
-        if(dirX == 1) {
+        System.out.println("Se ejecut¿?");
+        this.posY--;
+        System.out.println(posY);
+        /*if(dirX == 1) {
             posX += velX;
-            if(posX>=600-width) dirX = (-1)*dirX;
+            if(posX>=1200-width) dirX = (-1)*dirX;
         }else {
             posX -= velX;
             if(posX<=0) dirX = (-1)*dirX;
         }
         if(dirY == 1){
             posY += velY;
-            if(posY>=400-height) dirY = (-1)*dirY;
+            if(posY>=800-height) dirY = (-1)*dirY;
         }
         else {
             posY -= velY;
             if(posY<=0) dirY = (-1)*dirY;
-        }
+        }*/
     }
 
     public void render(GraphicsContext gc) {
