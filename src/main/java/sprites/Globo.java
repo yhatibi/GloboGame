@@ -10,9 +10,11 @@ public class Globo {
     private Image image;
     private double posX, posY, velX, velY, width, height;
     private int dirX, dirY;
+    private double globoID;
 
     public Globo(Image image) {
-        this.posX = Math.random()*1200;
+        this.posX = Math.random()*1100;
+        this.globoID = Math.random()*10000;
         this.posY = 750;
         this.velX = 1.0f;
         this.velY = 1.0f;
@@ -43,6 +45,10 @@ public class Globo {
             posY -= velY;
             if(posY<=0) dirY = (-1)*dirY;
         }*/
+    }
+
+    public double getGloboID() {
+        return globoID;
     }
 
     public void render(GraphicsContext gc) {

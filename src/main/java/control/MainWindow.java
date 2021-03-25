@@ -13,13 +13,12 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
-import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseEvent;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import javafx.util.Duration;
 import sprites.Globo;
 
 import java.net.URL;
-import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class MainWindow implements Initializable {
@@ -29,6 +28,11 @@ public class MainWindow implements Initializable {
     private Globo globo1 = new Globo(new Image("images/globo.png", 100, 100, false, false));
     private Image fons;
     double cuantos = 0.006;
+    private int contadorGlobosReventados;
+    Font font = Font.font("Arial");
+    Random random = new Random();
+    private int numRandom;
+    private double FPS = 0.005;
 
     ArrayList<Globo> globos = new ArrayList<>();
 
@@ -51,15 +55,24 @@ public class MainWindow implements Initializable {
      * Aquesta opció és molt més flexible que l'AnimationTimer
      */
     /*Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.0057), new EventHandler<>() {*/
-    Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.005), new EventHandler<>() {
+    Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(FPS), new EventHandler<>() {
         @Override
         public void handle(ActionEvent event) {
 
-
+            numRandom = random.nextInt(3) + 1;
             if (Math.random() < cuantos)  {
 
-                Globo globo = new Globo(new Image("images/globo.png", 100, 100, false, false));
-                globos.add(globo);
+                if (numRandom == 1) {
+                    Globo globo = new Globo(new Image("images/globo.png", 100, 100, false, false));
+                    globos.add(globo);
+                } else if (numRandom == 2){
+                    Globo globo = new Globo(new Image("images/globo2.png", 100, 100, false, false));
+                    globos.add(globo);
+                } else {
+                    Globo globo = new Globo(new Image("images/globo3.png", 100, 100, false, false));
+                    globos.add(globo);
+                }
+
             }
 
             gc.drawImage(fons, 0,0,1200,800);;
@@ -68,7 +81,21 @@ public class MainWindow implements Initializable {
                 globos.get(i).render(gc);
             }
 
-            gc.fillText("fdfd", 660, 600);
+            gc.setFill(Color.BLUE);
+            gc.setFont(new Font("Arial", 50));
+            gc.fillText(String.valueOf(contadorGlobosReventados), 1100, 100);
+
+            if (contadorGlobosReventados == 5) {
+                FPS = 0.025;
+            } else if (contadorGlobosReventados == 10) {
+                FPS = 0.035;
+            } else if (contadorGlobosReventados == 15) {
+                FPS = 0.045;
+            } else if (contadorGlobosReventados == 20) {
+                FPS = 0.055;
+            } else if (contadorGlobosReventados == 25) {
+                FPS = 0.065;
+            }
 
         }
     })
@@ -103,7 +130,9 @@ public class MainWindow implements Initializable {
             Point2D point = new Point2D(mouseEvent.getX(),mouseEvent.getY());
             globos.removeIf(globo -> {
 
-                if(globo.isClicked(point)) globo.clear(gc);
+                if(globo.isClicked(point)) {
+                    contadorGlobosReventados++;
+                }
 
                 return false;
             });
