@@ -128,14 +128,20 @@ public class MainWindow implements Initializable {
         scene = sc;
         scene.setOnMouseClicked(mouseEvent -> {
             Point2D point = new Point2D(mouseEvent.getX(),mouseEvent.getY());
-            globos.removeIf(globo -> {
 
-                if(globo.isClicked(point)) {
+
+            for (int i = 0; i < globos.size() ; i++) {
+                if(globos.get(i).isClicked(point)) {
                     contadorGlobosReventados++;
-                }
 
-                return false;
-            });
+                    // Cambiar imagen del globo por una explsion
+                    globos.get(i).setImage(new Image("images/explosion.png", 100, 100, false, false));
+
+                }
+            }
+
+
+            globos.removeIf(globo -> globo.isClicked(point));
         });
 
 
