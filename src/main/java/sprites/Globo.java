@@ -11,6 +11,7 @@ public class Globo {
     private double posX, posY, velX, velY, width, height;
     private int dirX, dirY;
     private double globoID;
+    boolean clicked = true;
 
     public Globo(Image image) {
         this.posX = Math.random()*1100;

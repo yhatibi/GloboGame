@@ -1,8 +1,8 @@
 package control;
 
-import javafx.animation.AnimationTimer;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
+import javafx.animation.*;
+import javafx.application.Platform;
+import javafx.beans.property.ObjectProperty;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -28,6 +28,7 @@ public class MainWindow implements Initializable {
     private Globo globo1 = new Globo(new Image("images/globo.png", 100, 100, false, false));
     private Image fons;
     double cuantos = 0.006;
+    boolean isClicked = false;
     private int contadorGlobosReventados;
     Font font = Font.font("Arial");
     Random random = new Random();
@@ -133,7 +134,7 @@ public class MainWindow implements Initializable {
             for (int i = 0; i < globos.size() ; i++) {
                 if(globos.get(i).isClicked(point)) {
                     contadorGlobosReventados++;
-
+                    isClicked = true;
                     // Cambiar imagen del globo por una explsion
                     globos.get(i).setImage(new Image("images/explosion.png", 100, 100, false, false));
 
@@ -142,8 +143,8 @@ public class MainWindow implements Initializable {
 
 
             globos.removeIf(globo -> globo.isClicked(point));
-        });
 
+        });
 
 
         scene.setOnKeyPressed(keyEvent -> {
@@ -151,5 +152,8 @@ public class MainWindow implements Initializable {
             globo.setDirection(keyEvent.getCode().toString());
 
         });
+
     }
+
+
 }
